@@ -1,0 +1,19 @@
+{
+  "name": "jslogger",
+  "version": "0.1.0",
+  "description": "Logger for javascript / typescript projects. Wraps console methods and provides additional features.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaGnaL/jslogger.git"
+  },
+  "author": "Manuel Lang <manuel.lang.311@gmail.com> (http://magnal.de/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaGnaL/jslogger/issues"
+  },
+  "homepage": "https://github.com/MaGnaL/jslogger#readme"
+}
