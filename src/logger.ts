@@ -6,7 +6,14 @@ export class Logger<T extends Logger<any>>
   {
     this.addToQueue(():void =>
     {
-      console.assert(test, message, optionalParams);
+      if (optionalParams.length > 0)
+      {
+        console.assert(test, message, optionalParams);
+      }
+      else
+      {
+        console.assert(test, message);
+      }
     });
     return <any> this;
   }
@@ -33,7 +40,14 @@ export class Logger<T extends Logger<any>>
   {
     this.addToQueue(():void =>
     {
-      console.debug(message, optionalParams);
+      if (optionalParams.length > 0)
+      {
+        console.debug(message, optionalParams);
+      }
+      else
+      {
+        console.debug(message);
+      }
     });
     return <any> this;
   }
@@ -42,7 +56,14 @@ export class Logger<T extends Logger<any>>
   {
     this.addToQueue(():void =>
     {
-      console.dir(value, optionalParams);
+      if (optionalParams.length > 0)
+      {
+        console.dir(value, optionalParams);
+      }
+      else
+      {
+        console.dir(value);
+      }
     });
     return <any> this;
   }
@@ -60,7 +81,14 @@ export class Logger<T extends Logger<any>>
   {
     this.addToQueue(():void =>
     {
-      console.error(message, optionalParams);
+      if (optionalParams.length > 0)
+      {
+        console.error(message, optionalParams);
+      }
+      else
+      {
+        console.error(message);
+      }
     });
     return <any> this;
   }
@@ -69,7 +97,14 @@ export class Logger<T extends Logger<any>>
   {
     this.addToQueue(():void =>
     {
-      console.info(message, optionalParams);
+      if (optionalParams.length > 0)
+      {
+        console.info(message, optionalParams);
+      }
+      else
+      {
+        console.info(message);
+      }
     });
     return <any> this;
   }
@@ -78,7 +113,14 @@ export class Logger<T extends Logger<any>>
   {
     this.addToQueue(():void =>
     {
-      console.log(message, optionalParams);
+      if (optionalParams.length > 0)
+      {
+        console.log(message, optionalParams);
+      }
+      else
+      {
+        console.log(message);
+      }
     });
     return <any> this;
   }
@@ -141,7 +183,14 @@ export class Logger<T extends Logger<any>>
   {
     this.addToQueue(():void =>
     {
-      console.trace(message, optionalParams);
+      if (optionalParams.length > 0)
+      {
+        console.trace(message, optionalParams);
+      }
+      else
+      {
+        console.trace(message);
+      }
     });
     return <any> this;
   }
@@ -150,15 +199,23 @@ export class Logger<T extends Logger<any>>
   {
     this.addToQueue(():void =>
     {
-      console.warn(message, optionalParams);
+      if (optionalParams.length > 0)
+      {
+        console.warn(message, optionalParams);
+      }
+      else
+      {
+        console.warn(message);
+      }
     });
     return <any> this;
   }
 
   protected addToQueue(func:Function):void
   {
-    this._loggerQueue.push(func);
-    this.triggerQueue();
+    func();
+    /*this._loggerQueue.push(func);
+     this.triggerQueue();*/
   }
 
   private triggerQueue():void
@@ -167,5 +224,6 @@ export class Logger<T extends Logger<any>>
     {
       func();
     });
+    this._loggerQueue = [];
   }
 }

@@ -9,7 +9,12 @@ var Logger = (function () {
             optionalParams[_i - 2] = arguments[_i];
         }
         this.addToQueue(function () {
-            console.assert(test, message, optionalParams);
+            if (optionalParams.length > 0) {
+                console.assert(test, message, optionalParams);
+            }
+            else {
+                console.assert(test, message);
+            }
         });
         return this;
     };
@@ -31,7 +36,12 @@ var Logger = (function () {
             optionalParams[_i - 1] = arguments[_i];
         }
         this.addToQueue(function () {
-            console.debug(message, optionalParams);
+            if (optionalParams.length > 0) {
+                console.debug(message, optionalParams);
+            }
+            else {
+                console.debug(message);
+            }
         });
         return this;
     };
@@ -41,7 +51,12 @@ var Logger = (function () {
             optionalParams[_i - 1] = arguments[_i];
         }
         this.addToQueue(function () {
-            console.dir(value, optionalParams);
+            if (optionalParams.length > 0) {
+                console.dir(value, optionalParams);
+            }
+            else {
+                console.dir(value);
+            }
         });
         return this;
     };
@@ -57,7 +72,12 @@ var Logger = (function () {
             optionalParams[_i - 1] = arguments[_i];
         }
         this.addToQueue(function () {
-            console.error(message, optionalParams);
+            if (optionalParams.length > 0) {
+                console.error(message, optionalParams);
+            }
+            else {
+                console.error(message);
+            }
         });
         return this;
     };
@@ -67,7 +87,12 @@ var Logger = (function () {
             optionalParams[_i - 1] = arguments[_i];
         }
         this.addToQueue(function () {
-            console.info(message, optionalParams);
+            if (optionalParams.length > 0) {
+                console.info(message, optionalParams);
+            }
+            else {
+                console.info(message);
+            }
         });
         return this;
     };
@@ -77,7 +102,12 @@ var Logger = (function () {
             optionalParams[_i - 1] = arguments[_i];
         }
         this.addToQueue(function () {
-            console.log(message, optionalParams);
+            if (optionalParams.length > 0) {
+                console.log(message, optionalParams);
+            }
+            else {
+                console.log(message);
+            }
         });
         return this;
     };
@@ -123,7 +153,12 @@ var Logger = (function () {
             optionalParams[_i - 1] = arguments[_i];
         }
         this.addToQueue(function () {
-            console.trace(message, optionalParams);
+            if (optionalParams.length > 0) {
+                console.trace(message, optionalParams);
+            }
+            else {
+                console.trace(message);
+            }
         });
         return this;
     };
@@ -133,18 +168,23 @@ var Logger = (function () {
             optionalParams[_i - 1] = arguments[_i];
         }
         this.addToQueue(function () {
-            console.warn(message, optionalParams);
+            if (optionalParams.length > 0) {
+                console.warn(message, optionalParams);
+            }
+            else {
+                console.warn(message);
+            }
         });
         return this;
     };
     Logger.prototype.addToQueue = function (func) {
-        this._loggerQueue.push(func);
-        this.triggerQueue();
+        func();
     };
     Logger.prototype.triggerQueue = function () {
         this._loggerQueue.forEach(function (func) {
             func();
         });
+        this._loggerQueue = [];
     };
     return Logger;
 }());
