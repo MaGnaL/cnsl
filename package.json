@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Logger for javascript / typescript projects. Wraps console methods and provides additional features.",
   "main": "index.js",
+  "typings": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
