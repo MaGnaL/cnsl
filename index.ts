@@ -1,3 +1,1 @@
-import {JSLogger} from './src/jslogger';
-
-export default JSLogger;
+export {JSLogger} from './src/jslogger';
