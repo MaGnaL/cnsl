@@ -1,13 +1,16 @@
-import {JSLogger} from './jslogger';
+import {cnsl} from './cnsl';
 
-export class JSLoggerGrouped extends JSLogger<JSLoggerGrouped>
+export class cnslgrp extends cnsl
 {
   private _groupedLoggerQueue:Function[] = [];
 
-  constructor(groupName:string, collapsed:boolean)
+  private _addToCnslQueue:Function;
+
+  constructor(groupName:string, collapsed:boolean, addToCnslQueue:Function)
   {
     super();
 
+    this._addToCnslQueue = addToCnslQueue;
     if (collapsed)
     {
       this.groupCollapsed(groupName);
@@ -18,7 +21,7 @@ export class JSLoggerGrouped extends JSLogger<JSLoggerGrouped>
     }
   }
 
-  private group(groupTitle:string):JSLoggerGrouped
+  private group(groupTitle:string):cnslgrp
   {
     this.addToQueue(():void =>
     {
@@ -27,7 +30,7 @@ export class JSLoggerGrouped extends JSLogger<JSLoggerGrouped>
     return this;
   }
 
-  private groupCollapsed(groupTitle:string):JSLoggerGrouped
+  private groupCollapsed(groupTitle:string):cnslgrp
   {
     this.addToQueue(():void =>
     {
@@ -36,7 +39,7 @@ export class JSLoggerGrouped extends JSLogger<JSLoggerGrouped>
     return this;
   }
 
-  private groupEnd():JSLoggerGrouped
+  private groupEnd():cnslgrp
   {
     this.addToQueue(():void =>
     {
@@ -48,7 +51,7 @@ export class JSLoggerGrouped extends JSLogger<JSLoggerGrouped>
   public close():void
   {
     this.groupEnd();
-    super.addToQueue(() =>
+    this._addToCnslQueue(() =>
     {
       this._groupedLoggerQueue.forEach((func:Function) => func());
     });
