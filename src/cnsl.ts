@@ -11,7 +11,7 @@ export class cnsl
   {
     this.addToQueue(():void =>
     {
-      console.assert.apply(this, [].concat(test, message, optionalParams));
+      console.assert.apply(console, [].concat(test, message, optionalParams));
     });
     return <any> this;
   }
@@ -20,7 +20,7 @@ export class cnsl
   {
     this.addToQueue(():void =>
     {
-      console.clear.apply(this);
+      console.clear.apply(console);
     });
     return <any> this;
   }
@@ -29,7 +29,7 @@ export class cnsl
   {
     this.addToQueue(():void =>
     {
-      console.count.apply(this, [].concat(countTitle));
+      console.count.apply(console, [].concat(countTitle));
     });
     return <any> this;
   }
@@ -38,7 +38,7 @@ export class cnsl
   {
     this.addToQueue(():void =>
     {
-      console.debug.apply(this, [].concat(message, optionalParams));
+      console.debug.apply(console, [].concat(message, optionalParams));
     });
     return <any> this;
   }
@@ -47,7 +47,7 @@ export class cnsl
   {
     this.addToQueue(():void =>
     {
-      console.dir.apply(this, [].concat(value, optionalParams));
+      console.dir.apply(console, [].concat(value, optionalParams));
     });
     return <any> this;
   }
@@ -56,7 +56,7 @@ export class cnsl
   {
     this.addToQueue(():void =>
     {
-      console.dirxml.apply(this, [].concat(value));
+      console.dirxml.apply(console, [].concat(value));
     });
     return <any> this;
   }
@@ -65,7 +65,7 @@ export class cnsl
   {
     this.addToQueue(():void =>
     {
-      console.error.apply(this, [].concat(message, optionalParams));
+      console.error.apply(console, [].concat(message, optionalParams));
     });
     return <any> this;
   }
@@ -74,7 +74,7 @@ export class cnsl
   {
     this.addToQueue(():void =>
     {
-      console.info.apply(this, [].concat(message, optionalParams));
+      console.info.apply(console, [].concat(message, optionalParams));
     });
     return <any> this;
   }
@@ -83,7 +83,7 @@ export class cnsl
   {
     this.addToQueue(():void =>
     {
-      console.log.apply(this, [].concat(message, optionalParams));
+      console.log.apply(console, [].concat(message, optionalParams));
     });
     return <any> this;
   }
@@ -92,7 +92,7 @@ export class cnsl
   {
     this.addToQueue(():boolean =>
     {
-      return console.msIsIndependentlyComposed.apply(this, [].concat(element));
+      return console.msIsIndependentlyComposed.apply(console, [].concat(element));
     });
     return <any> this;
   }
@@ -101,7 +101,7 @@ export class cnsl
   {
     this.addToQueue(():void =>
     {
-      console.profile.apply(this, [].concat(reportName));
+      console.profile.apply(console, [].concat(reportName));
     });
     return <any> this;
   }
@@ -110,7 +110,7 @@ export class cnsl
   {
     this.addToQueue(():void =>
     {
-      console.profileEnd.apply(this);
+      console.profileEnd.apply(console);
     });
     return <any> this;
   }
@@ -119,7 +119,7 @@ export class cnsl
   {
     this.addToQueue(():void =>
     {
-      console.select.apply(this, [].concat(element));
+      console.select.apply(console, [].concat(element));
     });
     return <any> this;
   }
@@ -128,7 +128,7 @@ export class cnsl
   {
     this.addToQueue(():void =>
     {
-      console.time.apply(this, [].concat(timerName));
+      console.time.apply(console, [].concat(timerName));
     });
     return <any> this;
   }
@@ -137,7 +137,7 @@ export class cnsl
   {
     this.addToQueue(():void =>
     {
-      console.timeEnd.apply(this, [].concat(timerName));
+      console.timeEnd.apply(console, [].concat(timerName));
     });
     return <any> this;
   }
@@ -146,7 +146,7 @@ export class cnsl
   {
     this.addToQueue(():void =>
     {
-      console.trace.apply(this, [].concat(message, optionalParams));
+      console.trace.apply(console, [].concat(message, optionalParams));
     });
     return <any> this;
   }
@@ -155,7 +155,7 @@ export class cnsl
   {
     this.addToQueue(():void =>
     {
-      console.warn.apply(this, [].concat(message, optionalParams));
+      console.warn.apply(console, [].concat(message, optionalParams));
     });
     return <any> this;
   }
