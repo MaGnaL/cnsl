@@ -1,6 +1,6 @@
-import {Logger} from './logger';
+import {JSLogger} from './jslogger';
 
-export class GroupedLogger extends Logger<GroupedLogger>
+export class JSLoggerGrouped extends JSLogger<JSLoggerGrouped>
 {
   private _groupedLoggerQueue:Function[] = [];
 
@@ -18,7 +18,7 @@ export class GroupedLogger extends Logger<GroupedLogger>
     }
   }
 
-  private group(groupTitle:string):GroupedLogger
+  private group(groupTitle:string):JSLoggerGrouped
   {
     this.addToQueue(():void =>
     {
@@ -27,7 +27,7 @@ export class GroupedLogger extends Logger<GroupedLogger>
     return this;
   }
 
-  private groupCollapsed(groupTitle:string):GroupedLogger
+  private groupCollapsed(groupTitle:string):JSLoggerGrouped
   {
     this.addToQueue(():void =>
     {
@@ -36,7 +36,7 @@ export class GroupedLogger extends Logger<GroupedLogger>
     return this;
   }
 
-  private groupEnd():GroupedLogger
+  private groupEnd():JSLoggerGrouped
   {
     this.addToQueue(():void =>
     {
