@@ -1,2 +1,2 @@
-export {JSLogger} from './jslogger';
-export {JSLoggerGrouped} from './jslogger-grouped';
+export {JSLogger as cnsl} from './jslogger';
+export {JSLoggerGrouped as cnslgrp} from './jslogger-grouped';
