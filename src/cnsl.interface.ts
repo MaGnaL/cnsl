@@ -1,8 +1,8 @@
 export interface Cnsl
 {
-  group(groupTitle:string):Cnsl;
+  group(groupIdent:string, groupTitle?:string):Cnsl;
 
-  groupCollapsed(groupTitle:string):Cnsl;
+  groupCollapsed(groupIdent:string, groupTitle?:string):Cnsl;
 
   groupEnd():void;
 

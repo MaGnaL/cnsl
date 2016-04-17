@@ -28,31 +28,31 @@ export class CnslClass implements Cnsl
     }
   }
 
-  public group(groupTitle:string):Cnsl
+  public group(groupIdent:string, groupTitle:string = undefined):Cnsl
   {
-    return this.createGroup(groupTitle, false);
+    return this.createGroup(groupIdent, groupTitle, false);
   }
 
-  public groupCollapsed(groupTitle:string):Cnsl
+  public groupCollapsed(groupIdent:string, groupTitle:string = undefined):Cnsl
   {
-    return this.createGroup(groupTitle, true);
+    return this.createGroup(groupIdent, groupTitle, true);
   }
 
-  private createGroup(groupTitle:string, collapsed:boolean):Cnsl
+  private createGroup(groupIdent:string, groupTitle:string, collapsed:boolean):Cnsl
   {
     let returnedGroup:Cnsl;
 
-    if (groupTitle in this._groups)
+    if (groupIdent in this._groups)
     {
-      returnedGroup = this._groups[groupTitle];
+      returnedGroup = this._groups[groupIdent];
     }
     else
     {
-      returnedGroup = new CnslClass(groupTitle, collapsed, (func:Function) =>
+      returnedGroup = new CnslClass(groupTitle || groupIdent, collapsed, (func:Function) =>
       {
         this.addToQueue(func);
       });
-      this._groups[groupTitle] = returnedGroup;
+      this._groups[groupIdent] = returnedGroup;
     }
 
     return returnedGroup;
