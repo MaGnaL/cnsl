@@ -4,6 +4,8 @@ export class CnslClass implements Cnsl
 {
   private _loggerQueue:Function[] = [];
 
+  private _groups:Object = {};
+
   private _parentAddToQueue:Function;
 
   constructor(groupTitle:string = undefined, collapsed:boolean = undefined, parentAddToQueue:Function = undefined)
@@ -28,18 +30,32 @@ export class CnslClass implements Cnsl
 
   public group(groupTitle:string):Cnsl
   {
-    return new CnslClass(groupTitle, false, (func:Function) =>
-    {
-      this.addToQueue(func);
-    });
+    return this.createGroup(groupTitle, false);
   }
 
   public groupCollapsed(groupTitle:string):Cnsl
   {
-    return new CnslClass(groupTitle, true, (func:Function) =>
+    return this.createGroup(groupTitle, true);
+  }
+
+  private createGroup(groupTitle:string, collapsed:boolean):Cnsl
+  {
+    let returnedGroup:Cnsl;
+
+    if (groupTitle in this._groups)
     {
-      this.addToQueue(func);
-    });
+      returnedGroup = this._groups[groupTitle];
+    }
+    else
+    {
+      returnedGroup = new CnslClass(groupTitle, collapsed, (func:Function) =>
+      {
+        this.addToQueue(func);
+      });
+      this._groups[groupTitle] = returnedGroup;
+    }
+
+    return returnedGroup;
   }
 
   public groupEnd():void
