@@ -66,3 +66,9 @@ console.log('normal log after group');
 In the browser console it looks like this:
 
 ![console-output-sample-without-cnsl](docs/console-output-sample-without-cnsl.png)
+
+Imagine you are using console groups excessively with nested function calls. You will always have control about where to show an output.
+
+## Planned Features
+
+* log levels for prod environments
