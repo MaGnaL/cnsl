@@ -32,12 +32,12 @@ Additionaly the following handling is also possible:
 ```javascript
 cnsl.log('normal log before group');
 
-cnsl.group('first group of logs') // group is created
+cnsl.group('grpident', 'first group of logs') // group is created
   .log('log inside of the group'); // buffered
 
 cnsl.log('normal log betweed group'); // not buffered
 
-cnsl.group('first group of logs') // already created group is used
+cnsl.group('grpident') // already created group is used
   .groupEnd(); // end of the group, console calls of the group will be processed
 
 cnsl.log('normal log after group');
@@ -46,6 +46,11 @@ cnsl.log('normal log after group');
 In the browser console it looks like this:
 
 ![console-output-sample-with-cnsl](docs/console-output-sample-with-cnsl.png)
+
+`cnsl.group` and `cnsl.groupCollapsed` provide two parameters.
+
+First parameter is used as ident, second is used as group title in the console.
+Second parameter is optional. If the second parameter is missing, the first one is also used as group title.
 
 Here is this sample with the "old" implementation:
 
