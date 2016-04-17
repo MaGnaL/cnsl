@@ -13,7 +13,7 @@ When a console group is created with `cnsl.group` or `cnsl.groupCollapsed` a gro
 
 Groups with cnsl are made like this:
 
-```
+```javascript
 cnsl.log('normal log before group');
 
 let grpdCnsl:Cnsl = cnsl.group('first group of logs');
@@ -29,7 +29,7 @@ cnsl.log('normal log after group');
 
 Additionaly the following handling is also possible:
 
-```
+```javascript
 cnsl.log('normal log before group');
 
 cnsl.group('first group of logs') // group is created
@@ -49,7 +49,7 @@ In the browser console it looks like this:
 
 Here is this sample with the "old" implementation:
 
-```
+```javascript
 console.log('normal log before group');
 
 console.group('first group of logs');
