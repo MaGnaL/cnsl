@@ -11,8 +11,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true,
-    "outDir": "dist"
+    "sourceMap": true
   },
   "exclude": [
     "node_modules",

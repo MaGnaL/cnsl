@@ -2,5 +2,6 @@ node_modules
 typings
 .idea
 
-dist
-src/sample
+*.js
+*.js.map
+*.d.ts

@@ -2,8 +2,8 @@
   "name": "cnsl",
   "version": "1.2.0",
   "description": "Wrapper for console functionality. Wraps console methods and provides additional features.",
-  "main": "dist/main.js",
-  "typings": "dist/main.d.ts",
+  "main": "cnsl.js",
+  "typings": "cnsl.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
