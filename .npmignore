@@ -3,5 +3,4 @@ typings
 .idea
 
 *.ts
-*.js.map
 !*.d.ts
