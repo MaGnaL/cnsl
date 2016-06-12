@@ -77,5 +77,4 @@ Imagine you are using console groups excessively with nested function calls. You
 ## Planned Features
 
 * log levels for prod environments
-* categorized logs to toggle dedicated topics (e.g. show only api related loggings, show all loggings except )
-* decorators to wrap entire methods in cnsl groups
+* categorized logs to toggle dedicated topics (e.g. show only api related loggings, show all loggings except bla)
