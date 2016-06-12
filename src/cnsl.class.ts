@@ -4,7 +4,7 @@ export class CnslClass implements Cnsl
 {
   private _loggerQueue:Function[] = [];
 
-  private _groups:Object = {};
+  private static _groups:Object = {};
 
   private _parentAddToQueue:Function;
 
@@ -42,9 +42,9 @@ export class CnslClass implements Cnsl
   {
     let returnedGroup:Cnsl;
 
-    if (groupIdent in this._groups)
+    if (groupIdent in CnslClass._groups)
     {
-      returnedGroup = this._groups[groupIdent];
+      returnedGroup = CnslClass._groups[groupIdent];
     }
     else
     {
@@ -52,7 +52,7 @@ export class CnslClass implements Cnsl
       {
         this.addToQueue(func);
       });
-      this._groups[groupIdent] = returnedGroup;
+      CnslClass._groups[groupIdent] = returnedGroup;
     }
 
     return returnedGroup;
