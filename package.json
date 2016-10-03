@@ -1,6 +1,6 @@
 {
   "name": "cnsl",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "Wrapper for console functionality. Wraps console methods and provides additional features.",
   "main": "index.js",
   "typings": "index.d.ts",
@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/MaGnaL/cnsl/issues"
   },
-  "homepage": "https://github.com/MaGnaL/cnsl#readme"
+  "homepage": "https://github.com/MaGnaL/cnsl#readme",
   "dependencies": {},
   "devDependencies": {
     "@types/jasmine": "^2.2.34",
