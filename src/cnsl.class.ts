@@ -1,10 +1,8 @@
-import {Cnsl} from './cnsl.interface';
-
-export class CnslClass implements Cnsl
+export class Cnsl
 {
   private _loggerQueue:Function[] = [];
 
-  private static _groups:Object = {};
+  private static _groups:{[grpIdent:string]:Cnsl} = {};
 
   private _parentAddToQueue:Function;
 
@@ -42,17 +40,17 @@ export class CnslClass implements Cnsl
   {
     let returnedGroup:Cnsl;
 
-    if (groupIdent in CnslClass._groups)
+    if (groupIdent in Cnsl._groups)
     {
-      returnedGroup = CnslClass._groups[groupIdent];
+      returnedGroup = Cnsl._groups[groupIdent];
     }
     else
     {
-      returnedGroup = new CnslClass(groupTitle || groupIdent, collapsed, (func:Function) =>
+      returnedGroup = new Cnsl(groupTitle || groupIdent, collapsed, (func:Function) =>
       {
         this.addToQueue(func);
       });
-      CnslClass._groups[groupIdent] = returnedGroup;
+      Cnsl._groups[groupIdent] = returnedGroup;
     }
 
     return returnedGroup;
@@ -229,3 +227,5 @@ export class CnslClass implements Cnsl
     this._loggerQueue = [];
   }
 }
+
+export const cnsl:Cnsl = new Cnsl();

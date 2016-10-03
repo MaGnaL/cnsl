@@ -1,5 +1,4 @@
-import {cnsl} from '../cnsl';
-import {Cnsl} from './cnsl.interface';
+import {Cnsl, cnsl} from './cnsl.class';
 
 export function cnslLogged(cnfg:CnslLoggedDecoratorConfig = {})
 {
@@ -38,7 +37,7 @@ export function cnslLogged(cnfg:CnslLoggedDecoratorConfig = {})
   }
 }
 
-interface CnslLoggedDecoratorConfig
+export interface CnslLoggedDecoratorConfig
 {
   parentGroupIdent?:string;
   groupIdent?:string;
