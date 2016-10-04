@@ -36,26 +36,6 @@ export class Cnsl
     return this.createGroup(groupIdent, groupTitle, true);
   }
 
-  private createGroup(groupIdent:string, groupTitle:string, collapsed:boolean):Cnsl
-  {
-    let returnedGroup:Cnsl;
-
-    if (groupIdent in Cnsl._groups)
-    {
-      returnedGroup = Cnsl._groups[groupIdent];
-    }
-    else
-    {
-      returnedGroup = new Cnsl(groupTitle || groupIdent, collapsed, (func:Function) =>
-      {
-        this.addToQueue(func);
-      });
-      Cnsl._groups[groupIdent] = returnedGroup;
-    }
-
-    return returnedGroup;
-  }
-
   public groupEnd():void
   {
     this.addToQueue(():void =>
@@ -206,6 +186,26 @@ export class Cnsl
     {
       console.warn.apply(console, [].concat(message, optionalParams));
     });
+  }
+
+  private createGroup(groupIdent:string, groupTitle:string, collapsed:boolean):Cnsl
+  {
+    let returnedGroup:Cnsl;
+
+    if (groupIdent in Cnsl._groups)
+    {
+      returnedGroup = Cnsl._groups[groupIdent];
+    }
+    else
+    {
+      returnedGroup = new Cnsl(groupTitle || groupIdent, collapsed, (func:Function) =>
+      {
+        this.addToQueue(func);
+      });
+      Cnsl._groups[groupIdent] = returnedGroup;
+    }
+
+    return returnedGroup;
   }
 
   protected addToQueue(func:Function):void
