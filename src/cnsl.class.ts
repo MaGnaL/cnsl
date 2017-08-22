@@ -1,10 +1,8 @@
-import {Cnsl} from './cnsl.interface';
-
-export class CnslClass implements Cnsl
+export class Cnsl
 {
   private _loggerQueue:Function[] = [];
 
-  private static _groups:Object = {};
+  private static _groups:{[grpIdent:string]:Cnsl} = {};
 
   private _parentAddToQueue:Function;
 
@@ -36,26 +34,6 @@ export class CnslClass implements Cnsl
   public groupCollapsed(groupIdent:string, groupTitle:string = undefined):Cnsl
   {
     return this.createGroup(groupIdent, groupTitle, true);
-  }
-
-  private createGroup(groupIdent:string, groupTitle:string, collapsed:boolean):Cnsl
-  {
-    let returnedGroup:Cnsl;
-
-    if (groupIdent in CnslClass._groups)
-    {
-      returnedGroup = CnslClass._groups[groupIdent];
-    }
-    else
-    {
-      returnedGroup = new CnslClass(groupTitle || groupIdent, collapsed, (func:Function) =>
-      {
-        this.addToQueue(func);
-      });
-      CnslClass._groups[groupIdent] = returnedGroup;
-    }
-
-    return returnedGroup;
   }
 
   public groupEnd():void
@@ -210,6 +188,26 @@ export class CnslClass implements Cnsl
     });
   }
 
+  private createGroup(groupIdent:string, groupTitle:string, collapsed:boolean):Cnsl
+  {
+    let returnedGroup:Cnsl;
+
+    if (groupIdent in Cnsl._groups)
+    {
+      returnedGroup = Cnsl._groups[groupIdent];
+    }
+    else
+    {
+      returnedGroup = new Cnsl(groupTitle || groupIdent, collapsed, (func:Function) =>
+      {
+        this.addToQueue(func);
+      });
+      Cnsl._groups[groupIdent] = returnedGroup;
+    }
+
+    return returnedGroup;
+  }
+
   protected addToQueue(func:Function):void
   {
     this._loggerQueue.push(func);
@@ -229,3 +227,5 @@ export class CnslClass implements Cnsl
     this._loggerQueue = [];
   }
 }
+
+export const cnsl:Cnsl = new Cnsl();

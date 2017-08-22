@@ -2,10 +2,14 @@
   "name": "cnsl",
   "version": "1.4.0",
   "description": "Wrapper for console functionality. Wraps console methods and provides additional features.",
-  "main": "cnsl.js",
-  "typings": "cnsl.d.ts",
+  "main": "index.js",
+  "typings": "index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "reinstall": "npm cache clean && npm install",
+    "prepublish": "npm run build",
+    "build": "tsc",
+    "test": "karma start",
+    "test:once": "karma start --no-auto-watch --single-run"
   },
   "repository": {
     "type": "git",
@@ -16,5 +20,20 @@
   "bugs": {
     "url": "https://github.com/MaGnaL/cnsl/issues"
   },
-  "homepage": "https://github.com/MaGnaL/cnsl#readme"
+  "homepage": "https://github.com/MaGnaL/cnsl#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jasmine": "^2.2.34",
+    "@types/karma": "^0.13.33",
+    "@types/lodash": "^4.14.36",
+    "jasmine": "^2.5.2",
+    "karma": "^1.3.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-mocha-reporter": "^2.2.0",
+    "karma-typescript": "^2.0.6",
+    "lodash": "^4.16.3",
+    "typescript": "^2.0.3"
+  },
+  "peerDependencies": {}
 }

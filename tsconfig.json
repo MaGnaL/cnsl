@@ -3,19 +3,24 @@
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
-    "noImplicitAny": true,
-    "removeComments": true,
-    "noLib": false,
-    "preserveConstEnums": true,
-    "declaration": true,
-    "suppressImplicitAnyIndexErrors": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "noEmitHelpers": false,
+    "noImplicitAny": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "stripInternal": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
   "exclude": [
+    "dist",
     "node_modules",
-    "typings",
-    "dist"
+    "src"
+  ],
+  "files": [
+    "./index.ts"
   ]
 }
