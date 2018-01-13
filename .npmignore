@@ -1,9 +1,7 @@
-src
+lib
 node_modules
-coverage
 docs
 npm-debug.log
 
-karma.conf.js
-
-*.ts
+tsconfig.json
+README.md
