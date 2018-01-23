@@ -1,7 +1,10 @@
+.idea
 lib
 node_modules
 docs
 npm-debug.log
+
+*.tgz
 
 tsconfig.json
 README.md
