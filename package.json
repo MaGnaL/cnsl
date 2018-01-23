@@ -1,6 +1,6 @@
 {
   "name": "cnsl",
-  "version": "1.5.0-beta.1",
+  "version": "2.0.0-beta.1",
   "description": "Wrapper for console functionality. Wraps console methods and provides additional features.",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
