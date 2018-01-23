@@ -1,2 +1,3 @@
-export {Cnsl, cnsl} from './cnsl.class';
-export {cnslLogged, CnslLoggedDecoratorConfig} from './cnsl-logged.decorator';
+export {cnsl} from './cnsl.class';
+export {Cnsl} from './cnsl.interface';
+export {cnslLogged} from './decorators/cnsl-logged.decorator';

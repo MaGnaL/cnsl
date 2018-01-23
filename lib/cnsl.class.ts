@@ -1,19 +1,21 @@
-export class Cnsl
+import {Cnsl} from './cnsl.interface';
+import * as _ from 'lodash';
+
+export class CnslClass implements Cnsl
 {
-  private _loggerQueue:Function[] = [];
+  private _queue: Function[] = [];
 
-  private static _groups:{[grpIdent:string]:Cnsl} = {};
+  private _groups: { [grpIdent: string]: Cnsl } = {};
 
-  private _parentAddToQueue:Function;
+  private isGroupClosed: boolean;
 
-  constructor(groupTitle:string = undefined, collapsed:boolean = undefined, parentAddToQueue:Function = undefined)
+  private scope: string;
+
+  constructor(groupTitle?: string, collapsed?: boolean, private parentScope?: string, private parentAddToQueue?: Function, private groupEndCallback?: Function)
   {
-    this._parentAddToQueue = parentAddToQueue;
-
     if (groupTitle !== undefined)
     {
-      this.addToQueue(():void =>
-      {
+      this.addToQueue((): void => {
         if (collapsed)
         {
           console.groupCollapsed.apply(console, [].concat(groupTitle));
@@ -26,206 +28,234 @@ export class Cnsl
     }
   }
 
-  public group(groupIdent:string, groupTitle:string = undefined):Cnsl
+  public scoped(scope: string): this
   {
-    return this.createGroup(groupIdent, groupTitle, false);
+    this.scope = scope;
+
+    return this;
   }
 
-  public groupCollapsed(groupIdent:string, groupTitle:string = undefined):Cnsl
+  public grouped(groupTitle: string, groupFunc: (cnsl: Cnsl) => void, collapsed?: boolean): void
   {
-    return this.createGroup(groupIdent, groupTitle, true);
+    let newGroup: Cnsl = this.createGroup(this.scopedMessage(groupTitle), collapsed);
+
+    groupFunc(newGroup);
+    newGroup.groupEnd();
   }
 
-  public groupEnd():void
+  public group(groupTitle: string, collapsed?: boolean): Cnsl
   {
-    this.addToQueue(():void =>
-    {
-      console.groupEnd.apply(console);
-    });
+    return this.createGroup(this.scopedMessage(groupTitle), collapsed);
+  }
 
-    if (this._parentAddToQueue !== undefined)
+  public groupEnd(): void
+  {
+    if (!this.isGroupClosed)
     {
-      this._parentAddToQueue(() =>
-      {
-        this._loggerQueue.forEach((func:Function) => func());
+      this.addToQueue((): void => {
+        console.groupEnd.apply(console);
       });
+
+      if (this.parentAddToQueue !== undefined)
+      {
+        this.parentAddToQueue(() => {
+          this._queue.forEach((func: Function) => func());
+        });
+      }
+
+      if (this.groupEndCallback !== undefined)
+      {
+        this.groupEndCallback();
+      }
+
+      this.isGroupClosed = true;
     }
   }
 
-  public assert(test:boolean, message:string, ...optionalParams:any[]):void
+  public assert(test: boolean, message: string, ...optionalParams: any[]): this
   {
-    this.addToQueue(():void =>
-    {
-      console.assert.apply(console, [].concat(test, message, optionalParams));
+    this.addToQueue((): void => {
+      console.assert.apply(console, [].concat(test, this.scopedMessage(message), optionalParams));
     });
+    return this;
   }
 
-  public clear():void
+  public clear(): this
   {
-    this.addToQueue(():void =>
-    {
+    this.addToQueue((): void => {
       console.clear.apply(console);
     });
+    return this;
   }
 
-  public count(countTitle:string):void
+  public count(countTitle: string): this
   {
-    this.addToQueue(():void =>
-    {
+    this.addToQueue((): void => {
       console.count.apply(console, [].concat(countTitle));
     });
+    return this;
   }
 
-  public debug(message:string, ...optionalParams:any[]):void
+  public debug(message: string, ...optionalParams: any[]): this
   {
-    this.addToQueue(():void =>
-    {
-      console.debug.apply(console, [].concat(message, optionalParams));
+    this.addToQueue((): void => {
+      console.debug.apply(console, [].concat(this.scopedMessage(message), optionalParams));
     });
+    return this;
   }
 
-  public dir(value:any, ...optionalParams:any[]):void
+  public dir(value: any, ...optionalParams: any[]): this
   {
-    this.addToQueue(():void =>
-    {
+    this.addToQueue((): void => {
       console.dir.apply(console, [].concat(value, optionalParams));
     });
+    return this;
   }
 
-  public dirxml(value:any):void
+  public dirxml(value: any): this
   {
-    this.addToQueue(():void =>
-    {
+    this.addToQueue((): void => {
       console.dirxml.apply(console, [].concat(value));
     });
+    return this;
   }
 
-  public error(message:any, ...optionalParams:any[]):void
+  public error(message: any, ...optionalParams: any[]): this
   {
-    this.addToQueue(():void =>
-    {
-      console.error.apply(console, [].concat(message, optionalParams));
+    this.addToQueue((): void => {
+      console.error.apply(console, [].concat(this.scopedMessage(message), optionalParams));
     });
+    return this;
   }
 
-  public info(message:any, ...optionalParams:any[]):void
+  public info(message: any, ...optionalParams: any[]): this
   {
-    this.addToQueue(():void =>
-    {
-      console.info.apply(console, [].concat(message, optionalParams));
+    this.addToQueue((): void => {
+      console.info.apply(console, [].concat(this.scopedMessage(message), optionalParams));
     });
+    return this;
   }
 
-  public log(message:any, ...optionalParams:any[]):void
+  public log(message: any, ...optionalParams: any[]): this
   {
-    this.addToQueue(():void =>
-    {
-      console.log.apply(console, [].concat(message, optionalParams));
+    this.addToQueue((): void => {
+      console.log.apply(console, [].concat(this.scopedMessage(message), optionalParams));
     });
+    return this;
   }
 
-  public msIsIndependentlyComposed(element:Element):void
+  public msIsIndependentlyComposed(element: Element): this
   {
-    this.addToQueue(():boolean =>
-    {
+    this.addToQueue((): boolean => {
       return console.msIsIndependentlyComposed.apply(console, [].concat(element));
     });
+    return this;
   }
 
-  public profile(reportName:string):void
+  public profile(reportName: string): this
   {
-    this.addToQueue(():void =>
-    {
+    this.addToQueue((): void => {
       console.profile.apply(console, [].concat(reportName));
     });
+    return this;
   }
 
-  public profileEnd():void
+  public profileEnd(): this
   {
-    this.addToQueue(():void =>
-    {
+    this.addToQueue((): void => {
       console.profileEnd.apply(console);
     });
+    return this;
   }
 
-  public select(element:Element):void
+  public select(element: Element): this
   {
-    this.addToQueue(():void =>
-    {
+    this.addToQueue((): void => {
       console.select.apply(console, [].concat(element));
     });
+    return this;
   }
 
-  public time(timerName:string):void
+  public time(timerName: string): this
   {
-    this.addToQueue(():void =>
-    {
+    this.addToQueue((): void => {
       console.time.apply(console, [].concat(timerName));
     });
+    return this;
   }
 
-  public timeEnd(timerName:string):void
+  public timeEnd(timerName: string): this
   {
-    this.addToQueue(():void =>
-    {
+    this.addToQueue((): void => {
       console.timeEnd.apply(console, [].concat(timerName));
     });
+    return this;
   }
 
-  public trace(message:any, ...optionalParams:any[]):void
+  public trace(message: any, ...optionalParams: any[]): this
   {
-    this.addToQueue(():void =>
-    {
-      console.trace.apply(console, [].concat(message, optionalParams));
+    this.addToQueue((): void => {
+      console.trace.apply(console, [].concat(this.scopedMessage(message), optionalParams));
     });
+    return this;
   }
 
-  public warn(message:any, ...optionalParams:any[]):void
+  public warn(message: any, ...optionalParams: any[]): this
   {
-    this.addToQueue(():void =>
-    {
-      console.warn.apply(console, [].concat(message, optionalParams));
+    this.addToQueue((): void => {
+      console.warn.apply(console, [].concat(this.scopedMessage(message), optionalParams));
     });
+    return this;
   }
 
-  private createGroup(groupIdent:string, groupTitle:string, collapsed:boolean):Cnsl
+  private createGroup(groupTitle: string, collapsed: boolean): Cnsl
   {
-    let returnedGroup:Cnsl;
+    let returnedGroup: Cnsl;
 
-    if (groupIdent in Cnsl._groups)
+    if (groupTitle in this._groups)
     {
-      returnedGroup = Cnsl._groups[groupIdent];
+      returnedGroup = this._groups[groupTitle];
     }
     else
     {
-      returnedGroup = new Cnsl(groupTitle || groupIdent, collapsed, (func:Function) =>
-      {
+      returnedGroup = new CnslClass(groupTitle, collapsed, _.join(_.compact([this.parentScope, this.scope]), ' | '), (func: Function) => {
         this.addToQueue(func);
+      }, () => {
+        delete this._groups[groupTitle];
       });
-      Cnsl._groups[groupIdent] = returnedGroup;
+      this._groups[groupTitle] = returnedGroup;
     }
 
     return returnedGroup;
   }
 
-  protected addToQueue(func:Function):void
+  protected addToQueue(func: Function): void
   {
-    this._loggerQueue.push(func);
-
-    if (this._parentAddToQueue === undefined)
+    if (!this.isGroupClosed)
     {
-      this.triggerQueue();
+      this._queue.push(func);
+
+      if (this.parentAddToQueue === undefined)
+      {
+        this.triggerQueue();
+      }
     }
   }
 
-  private triggerQueue():void
+  private triggerQueue(): void
   {
-    this._loggerQueue.forEach((func:Function) =>
-    {
+    this._queue.forEach((func: Function) => {
       func();
     });
-    this._loggerQueue = [];
+    this._queue = [];
+  }
+
+  private scopedMessage(message: string): string
+  {
+    message = this.scope ? this.scope + ' | ' + message : message;
+    message = this.parentScope ? this.parentScope + ' | ' + message : message;
+    return message;
   }
 }
 
-export const cnsl:Cnsl = new Cnsl();
+export const cnsl: Cnsl = new CnslClass();
