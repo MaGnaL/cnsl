@@ -1,39 +1,32 @@
 {
   "name": "cnsl",
-  "version": "1.4.0",
+  "version": "2.0.0-beta.1",
   "description": "Wrapper for console functionality. Wraps console methods and provides additional features.",
-  "main": "index.js",
-  "typings": "index.d.ts",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
   "scripts": {
-    "reinstall": "npm cache clean && npm install",
-    "prepublish": "npm run build",
+    "reinstall": "npm install && npm prune",
+    "prepare": "npm run build",
     "build": "tsc",
-    "test": "karma start",
-    "test:once": "karma start --no-auto-watch --single-run"
+    "build:watch": "tsc -w",
+    "pack": "npm pack"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MaGnaL/cnsl.git"
+    "url": "https://github.com/MaGnaLio/cnsl.git"
   },
-  "author": "Manuel Lang <manuel.lang.311@gmail.com> (http://magnal.de/)",
+  "author": {
+    "name": "MaGnaL",
+    "email": "code@magnal.io",
+    "url": "https://magnal.io/"
+  },
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/MaGnaL/cnsl/issues"
+  "dependencies": {
+    "lodash": "^4.17.4"
   },
-  "homepage": "https://github.com/MaGnaL/cnsl#readme",
-  "dependencies": {},
   "devDependencies": {
-    "@types/jasmine": "^2.2.34",
-    "@types/karma": "^0.13.33",
-    "@types/lodash": "^4.14.36",
-    "jasmine": "^2.5.2",
-    "karma": "^1.3.0",
-    "karma-chrome-launcher": "^2.0.0",
-    "karma-jasmine": "^1.0.2",
-    "karma-mocha-reporter": "^2.2.0",
-    "karma-typescript": "^2.0.6",
-    "lodash": "^4.16.3",
-    "typescript": "^2.0.3"
+    "@types/lodash": "^4.14.92",
+    "typescript": "^2.6.2"
   },
   "peerDependencies": {}
 }

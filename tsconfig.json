@@ -11,16 +11,10 @@
     "declaration": true,
     "skipLibCheck": true,
     "stripInternal": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ]
+    "outDir": "./dist"
   },
   "exclude": [
     "dist",
-    "node_modules",
-    "src"
-  ],
-  "files": [
-    "./index.ts"
+    "node_modules"
   ]
 }

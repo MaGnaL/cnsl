@@ -1,10 +1,5 @@
 .idea
 node_modules
-coverage
 npm-debug.log
 
-*.d.ts
-*.js.map
-*.js
-
-!karma.conf.js
+dist

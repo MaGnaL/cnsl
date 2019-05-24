@@ -1,9 +1,10 @@
-src
+.idea
+lib
 node_modules
-coverage
 docs
 npm-debug.log
 
-karma.conf.js
+*.tgz
 
-*.ts
+tsconfig.json
+README.md
