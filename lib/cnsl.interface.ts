@@ -25,13 +25,9 @@ export interface Cnsl {
 
   log(message: any, ...optionalParams: any[]): this;
 
-  msIsIndependentlyComposed(element: Element): this;
-
   profile(reportName: string): this;
 
   profileEnd(): this;
-
-  select(element: Element): this;
 
   time(timerName: string): this;
 

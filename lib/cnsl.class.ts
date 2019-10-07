@@ -18,13 +18,15 @@ export class CnslClass implements Cnsl {
     private groupEndCallback?: Function
   ) {
     if (groupTitle !== undefined) {
-      this.addToQueue((): void => {
-        if (collapsed) {
-          console.groupCollapsed.apply(console, [].concat(groupTitle));
-        } else {
-          console.group.apply(console, [].concat(groupTitle));
+      this.addToQueue(
+        (): void => {
+          if (collapsed) {
+            console.groupCollapsed.apply(console, [].concat(groupTitle));
+          } else {
+            console.group.apply(console, [].concat(groupTitle));
+          }
         }
-      });
+      );
     }
   }
 
@@ -47,9 +49,11 @@ export class CnslClass implements Cnsl {
 
   public groupEnd(): void {
     if (!this.isGroupClosed) {
-      this.addToQueue((): void => {
-        console.groupEnd.apply(console);
-      });
+      this.addToQueue(
+        (): void => {
+          console.groupEnd.apply(console);
+        }
+      );
 
       if (this.parentAddToQueue !== undefined) {
         this.parentAddToQueue(() => {
@@ -66,121 +70,137 @@ export class CnslClass implements Cnsl {
   }
 
   public assert(test: boolean, message: string, ...optionalParams: any[]): this {
-    this.addToQueue((): void => {
-      console.assert.apply(console, [].concat(test, this.scopedMessage(message), optionalParams));
-    });
+    this.addToQueue(
+      (): void => {
+        console.assert.apply(console, [].concat(test, this.scopedMessage(message), optionalParams));
+      }
+    );
     return this;
   }
 
   public clear(): this {
-    this.addToQueue((): void => {
-      console.clear.apply(console);
-    });
+    this.addToQueue(
+      (): void => {
+        console.clear.apply(console);
+      }
+    );
     return this;
   }
 
   public count(countTitle: string): this {
-    this.addToQueue((): void => {
-      console.count.apply(console, [].concat(countTitle));
-    });
+    this.addToQueue(
+      (): void => {
+        console.count.apply(console, [].concat(countTitle));
+      }
+    );
     return this;
   }
 
   public debug(message: string, ...optionalParams: any[]): this {
-    this.addToQueue((): void => {
-      console.debug.apply(console, [].concat(this.scopedMessage(message), optionalParams));
-    });
+    this.addToQueue(
+      (): void => {
+        console.debug.apply(console, [].concat(this.scopedMessage(message), optionalParams));
+      }
+    );
     return this;
   }
 
   public dir(value: any, ...optionalParams: any[]): this {
-    this.addToQueue((): void => {
-      console.dir.apply(console, [].concat(value, optionalParams));
-    });
+    this.addToQueue(
+      (): void => {
+        console.dir.apply(console, [].concat(value, optionalParams));
+      }
+    );
     return this;
   }
 
   public dirxml(value: any): this {
-    this.addToQueue((): void => {
-      console.dirxml.apply(console, [].concat(value));
-    });
+    this.addToQueue(
+      (): void => {
+        console.dirxml.apply(console, [].concat(value));
+      }
+    );
     return this;
   }
 
   public error(message: any, ...optionalParams: any[]): this {
-    this.addToQueue((): void => {
-      console.error.apply(console, [].concat(this.scopedMessage(message), optionalParams));
-    });
+    this.addToQueue(
+      (): void => {
+        console.error.apply(console, [].concat(this.scopedMessage(message), optionalParams));
+      }
+    );
     return this;
   }
 
   public info(message: any, ...optionalParams: any[]): this {
-    this.addToQueue((): void => {
-      console.info.apply(console, [].concat(this.scopedMessage(message), optionalParams));
-    });
+    this.addToQueue(
+      (): void => {
+        console.info.apply(console, [].concat(this.scopedMessage(message), optionalParams));
+      }
+    );
     return this;
   }
 
   public log(message: any, ...optionalParams: any[]): this {
-    this.addToQueue((): void => {
-      console.log.apply(console, [].concat(this.scopedMessage(message), optionalParams));
-    });
-    return this;
-  }
-
-  public msIsIndependentlyComposed(element: Element): this {
-    this.addToQueue((): boolean => {
-      return console.msIsIndependentlyComposed.apply(console, [].concat(element));
-    });
+    this.addToQueue(
+      (): void => {
+        console.log.apply(console, [].concat(this.scopedMessage(message), optionalParams));
+      }
+    );
     return this;
   }
 
   public profile(reportName: string): this {
-    this.addToQueue((): void => {
-      console.profile.apply(console, [].concat(reportName));
-    });
+    this.addToQueue(
+      (): void => {
+        console.profile.apply(console, [].concat(reportName));
+      }
+    );
     return this;
   }
 
   public profileEnd(): this {
-    this.addToQueue((): void => {
-      console.profileEnd.apply(console);
-    });
-    return this;
-  }
-
-  public select(element: Element): this {
-    this.addToQueue((): void => {
-      console.select.apply(console, [].concat(element));
-    });
+    this.addToQueue(
+      (): void => {
+        console.profileEnd.apply(console);
+      }
+    );
     return this;
   }
 
   public time(timerName: string): this {
-    this.addToQueue((): void => {
-      console.time.apply(console, [].concat(timerName));
-    });
+    this.addToQueue(
+      (): void => {
+        console.time.apply(console, [].concat(timerName));
+      }
+    );
     return this;
   }
 
   public timeEnd(timerName: string): this {
-    this.addToQueue((): void => {
-      console.timeEnd.apply(console, [].concat(timerName));
-    });
+    this.addToQueue(
+      (): void => {
+        console.timeEnd.apply(console, [].concat(timerName));
+      }
+    );
     return this;
   }
 
   public trace(message: any, ...optionalParams: any[]): this {
-    this.addToQueue((): void => {
-      console.trace.apply(console, [].concat(this.scopedMessage(message), optionalParams));
-    });
+    this.addToQueue(
+      (): void => {
+        console.trace.apply(console, [].concat(this.scopedMessage(message), optionalParams));
+      }
+    );
     return this;
   }
 
   public warn(message: any, ...optionalParams: any[]): this {
-    this.addToQueue((): void => {
-      console.warn.apply(console, [].concat(this.scopedMessage(message), optionalParams));
-    });
+    this.addToQueue(
+      (): void => {
+        console.warn.apply(console, [].concat(this.scopedMessage(message), optionalParams));
+      }
+    );
     return this;
   }
 
