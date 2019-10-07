@@ -9,16 +9,18 @@
     "prepare": "npm run build",
     "build": "tsc",
     "build:watch": "tsc -w",
-    "pack": "npm pack"
+    "pack": "npm pack",
+    "format": "prettier --write \"lib/**/*.ts\"",
+    "format:check": "prettier --check \"lib/**/*.ts\""
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/MaGnaL/cnsl.git"
   },
   "author": {
-    "name": "MaGnaL",
+    "name": "Manuel Lang",
     "email": "code@manuellang.dev",
-    "url": "https://magnal.io/"
+    "url": "https://manuellang.dev/"
   },
   "license": "MIT",
   "dependencies": {
@@ -26,6 +28,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.132",
+    "prettier": "^1.18.2",
     "typescript": "^2.9.2"
   },
   "peerDependencies": {}
