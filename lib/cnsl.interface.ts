@@ -1,5 +1,4 @@
-export interface Cnsl
-{
+export interface Cnsl {
   scoped(scope: string): this;
 
   group(groupTitle: string, collapsed?: boolean): Cnsl;
