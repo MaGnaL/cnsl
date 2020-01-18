@@ -23,11 +23,19 @@
     "url": "https://manuellang.dev/"
   },
   "license": "MIT",
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
   "dependencies": {},
   "devDependencies": {
-    "lodash": "^4.17.15",
+    "@magnal/prettier-config": "^1.0.2",
     "@types/lodash": "^4.14.141",
-    "prettier": "^1.18.2",
+    "husky": "^4.0.10",
+    "lodash": "^4.17.15",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
     "typescript": "^3.6.3"
   },
   "peerDependencies": {
