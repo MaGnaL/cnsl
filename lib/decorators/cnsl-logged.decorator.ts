@@ -1,21 +1,19 @@
-import {cnsl} from '../cnsl.class';
-import {Cnsl} from '../cnsl.interface';
+import {Cnsl} from '../interfaces';
+import {cnsl} from '../constants';
 
 export function cnslLogged({
   groupTitle,
-  groupCollapsed
+  groupCollapsed,
 }: {groupTitle?: string; groupCollapsed?: boolean} = {}): MethodDecorator {
-  return function(target: Object, propertyKey: string, descriptor: TypedPropertyDescriptor<any>) {
+  return function (target: Object, propertyKey: string, descriptor: TypedPropertyDescriptor<any>) {
     let originalMethod = descriptor.value; // save a reference to the original method
 
     // NOTE: Do not use arrow syntax here. Use a function expression in
     // order to use the correct value of `this` in this method (see notes below)
-    descriptor.value = function(...args: any[]) {
-      let grpCnsl: Cnsl = groupTitle ? cnsl.scoped(null).group(groupTitle, groupCollapsed) : cnsl;
+    descriptor.value = function (...args: any[]) {
+      let grpCnsl: Cnsl = groupTitle ? cnsl.group(groupTitle, '', groupCollapsed) : cnsl;
       if (groupTitle) {
-        grpCnsl.log(
-          `Call: ${(target.constructor as any).name}.${propertyKey}(${JSON.stringify(args)})`
-        );
+        grpCnsl.log(`Call: ${(target.constructor as any).name}.${propertyKey}(${JSON.stringify(args)})`);
       }
 
       let result = originalMethod.apply(this, args);
@@ -25,9 +23,9 @@ export function cnslLogged({
         grpCnsl.groupEnd();
       } else {
         grpCnsl.log(
-          `Call: ${(target.constructor as any).name}.${propertyKey}(${JSON.stringify(
-            args
-          )}) => ${JSON.stringify(result)}`
+          `Call: ${(target.constructor as any).name}.${propertyKey}(${JSON.stringify(args)}) => ${JSON.stringify(
+            result
+          )}`
         );
       }
 
