@@ -1,24 +1,31 @@
 import {Cnsl} from './cnsl.interface';
 import * as _ from 'lodash';
+import {CnslConfig} from './cnsl-config.class';
 
 export class CnslClass implements Cnsl {
-  private _queue: Function[] = [];
+  private static groups: {[grpIdent: string]: Cnsl} = {};
 
-  private _groups: {[grpIdent: string]: Cnsl} = {};
-
+  private functionQueue: Function[] = [];
   private isGroupClosed: boolean;
 
-  private scope: string;
+  /** Holds own scope */
+  private _scope: string;
+  /**
+   * Combines parent scope and own scope
+   */
+  public get scope(): string {
+    return _.join(_.compact([this.parentGroup?.scope, this._scope]), CnslConfig.scopeSeparator);
+  }
 
   constructor(
     groupTitle?: string,
     collapsed?: boolean,
-    private parentScope?: string,
     private parentAddToQueue?: Function,
-    private groupEndCallback?: Function
+    private groupEndCallback?: Function,
+    private parentGroup?: Cnsl
   ) {
     if (groupTitle !== undefined) {
-      this.addToQueue((): void => {
+      this.queue((): void => {
         if (collapsed) {
           console.groupCollapsed(groupTitle);
         } else {
@@ -29,31 +36,27 @@ export class CnslClass implements Cnsl {
   }
 
   public scoped(scope: string): this {
-    this.scope = scope;
+    this._scope = scope;
 
     return this;
   }
 
   public grouped(groupTitle: string, groupFunc: (cnsl: Cnsl) => void, collapsed?: boolean): void {
-    let newGroup: Cnsl = this.createGroup(this.scopedMessage(groupTitle), collapsed);
+    let newGroup: Cnsl = this.createGroup(this.withScope(groupTitle), collapsed);
 
     groupFunc(newGroup);
     newGroup.groupEnd();
   }
 
-  public group(groupTitle: string, collapsed?: boolean): Cnsl {
-    return this.createGroup(this.scopedMessage(groupTitle), collapsed);
-  }
-
   public groupEnd(): void {
     if (!this.isGroupClosed) {
-      this.addToQueue((): void => {
+      this.queue((): void => {
         console.groupEnd();
       });
 
       if (this.parentAddToQueue !== undefined) {
         this.parentAddToQueue(() => {
-          this._queue.forEach((func: Function) => func());
+          this.triggerQueue();
         });
       }
 
@@ -65,137 +68,64 @@ export class CnslClass implements Cnsl {
     }
   }
 
-  public assert(test: boolean, message: string, ...optionalParams: any[]): this {
-    this.addToQueue((): void => {
-      console.assert(test, this.scopedMessage(message), ...optionalParams);
-    });
-    return this;
+  public group(groupTitle: string, collapsed?: boolean): Cnsl {
+    return this.createGroup(this.withScope(groupTitle), collapsed);
   }
 
-  public clear(): this {
-    this.addToQueue((): void => {
-      console.clear();
-    });
-    return this;
+  public assert(condition?: boolean, message?: string, ...data: any[]): void {
+    this.queue(() => console.assert(condition, this.withEmoji('☑') + this.withScope(message), ...data));
   }
 
-  public count(countTitle: string): this {
-    this.addToQueue((): void => {
-      console.count(countTitle);
-    });
-    return this;
+  public debug(message?: any, ...optionalParams: any[]): void {
+    this.queue(() => console.debug(this.withEmoji('🐛') + this.withScope(message), ...optionalParams));
   }
 
-  public debug(message: string, ...optionalParams: any[]): this {
-    this.addToQueue((): void => {
-      console.debug(this.scopedMessage(message), ...optionalParams);
-    });
-    return this;
+  public error(message?: any, ...optionalParams: any[]): void {
+    this.queue(() => console.error(this.withEmoji('⛔') + this.withScope(message), ...optionalParams));
   }
 
-  public dir(value: any, ...optionalParams: any[]): this {
-    this.addToQueue((): void => {
-      console.dir(value, ...optionalParams);
-    });
-    return this;
+  public info(message?: any, ...optionalParams: any[]): void {
+    this.queue(() => console.info(this.withEmoji('ℹ') + this.withScope(message), ...optionalParams));
   }
 
-  public dirxml(value: any): this {
-    this.addToQueue((): void => {
-      console.dirxml(value);
-    });
-    return this;
+  public log(message?: any, ...optionalParams: any[]): void {
+    this.queue(() => console.log(this.withEmoji('💬') + this.withScope(message), ...optionalParams));
   }
 
-  public error(message: any, ...optionalParams: any[]): this {
-    this.addToQueue((): void => {
-      console.error(this.scopedMessage(message), ...optionalParams);
-    });
-    return this;
+  public trace(message?: any, ...optionalParams: any[]): void {
+    this.queue(() => console.trace(this.withEmoji('💭') + this.withScope(message), ...optionalParams));
   }
 
-  public info(message: any, ...optionalParams: any[]): this {
-    this.addToQueue((): void => {
-      console.info(this.scopedMessage(message), ...optionalParams);
-    });
-    return this;
-  }
-
-  public log(message: any, ...optionalParams: any[]): this {
-    this.addToQueue((): void => {
-      console.log(this.scopedMessage(message), ...optionalParams);
-    });
-    return this;
-  }
-
-  public profile(reportName: string): this {
-    this.addToQueue((): void => {
-      console.profile(reportName);
-    });
-    return this;
-  }
-
-  public profileEnd(): this {
-    this.addToQueue((): void => {
-      console.profileEnd();
-    });
-    return this;
-  }
-
-  public time(timerName: string): this {
-    this.addToQueue((): void => {
-      console.time(timerName);
-    });
-    return this;
-  }
-
-  public timeEnd(timerName: string): this {
-    this.addToQueue((): void => {
-      console.timeEnd(timerName);
-    });
-    return this;
-  }
-
-  public trace(message: any, ...optionalParams: any[]): this {
-    this.addToQueue((): void => {
-      console.trace(this.scopedMessage(message), ...optionalParams);
-    });
-    return this;
-  }
-
-  public warn(message: any, ...optionalParams: any[]): this {
-    this.addToQueue((): void => {
-      console.warn(this.scopedMessage(message), ...optionalParams);
-    });
-    return this;
+  public warn(message?: any, ...optionalParams: any[]): void {
+    this.queue(() => console.warn(this.withEmoji('⚠') + this.withScope(message), ...optionalParams));
   }
 
   private createGroup(groupTitle: string, collapsed: boolean): Cnsl {
     let returnedGroup: Cnsl;
 
-    if (groupTitle in this._groups) {
-      returnedGroup = this._groups[groupTitle];
+    if (groupTitle in CnslClass.groups) {
+      returnedGroup = CnslClass.groups[groupTitle];
     } else {
       returnedGroup = new CnslClass(
-        groupTitle,
+        this.withEmoji('📂') + groupTitle,
         collapsed,
-        _.join(_.compact([this.parentScope, this.scope]), ' | '),
         (func: Function) => {
-          this.addToQueue(func);
+          this.queue(func);
         },
         () => {
-          delete this._groups[groupTitle];
-        }
+          delete CnslClass.groups[groupTitle];
+        },
+        this
       );
-      this._groups[groupTitle] = returnedGroup;
+      CnslClass.groups[groupTitle] = returnedGroup;
     }
 
     return returnedGroup;
   }
 
-  protected addToQueue(func: Function): void {
+  protected queue(func: Function): void {
     if (!this.isGroupClosed) {
-      this._queue.push(func);
+      this.functionQueue.push(func);
 
       if (this.parentAddToQueue === undefined) {
         this.triggerQueue();
@@ -204,16 +134,24 @@ export class CnslClass implements Cnsl {
   }
 
   private triggerQueue(): void {
-    this._queue.forEach((func: Function) => {
-      func();
-    });
-    this._queue = [];
+    this.functionQueue.forEach((func: Function) => func());
+    this.functionQueue = [];
   }
 
-  private scopedMessage(message: string): string {
-    message = this.scope ? this.scope + ' | ' + message : message;
-    message = this.parentScope ? this.parentScope + ' | ' + message : message;
-    return message;
+  /**
+   * Combines message and scope
+   * @param message
+   */
+  private withScope(message: string): string {
+    return _.join(_.compact([this.scope, message]), CnslConfig.scopeSeparator);
+  }
+
+  /**
+   * Validates for emoji config
+   * @param emoji
+   */
+  private withEmoji(emoji: string): string {
+    return CnslConfig.showEmoji ? emoji + CnslConfig.emojiSeparator : '';
   }
 }
 
