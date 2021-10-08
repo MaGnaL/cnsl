@@ -612,28 +612,6 @@
     yargs "15.4.1"
     yargs-parser "20.0.0"
 
-"@nrwl/cli@12.5.1":
-  version "12.5.1"
-  resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/@nrwl/cli/-/cli-12.5.1.tgz#b8cd26c4fb1ab44cd8dbceb50749fe25539e4a9c"
-  integrity sha1-uM0mxPsatEzY2861B0n+JVOeSpw=
-  dependencies:
-    "@nrwl/tao" "12.5.1"
-    chalk "4.1.0"
-    v8-compile-cache "2.3.0"
-    yargs "15.4.1"
-    yargs-parser "20.0.0"
-
-"@nrwl/devkit@12.5.1":
-  version "12.5.1"
-  resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/@nrwl/devkit/-/devkit-12.5.1.tgz#713d99f99c84c51e2d4003c0a1b12f90bcaee475"
-  integrity sha1-cT2Z+ZyExR4tQAPAobEvkLyu5HU=
-  dependencies:
-    "@nrwl/tao" "12.5.1"
-    ejs "^3.1.5"
-    ignore "^5.0.4"
-    semver "7.3.4"
-    tslib "^2.0.0"
-
 "@nrwl/devkit@12.9.0":
   version "12.9.0"
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/@nrwl/devkit/-/devkit-12.9.0.tgz#fbf6eb715d1deb22fa919bceb3dff7a5c990d415"
@@ -658,16 +636,6 @@
     ts-node "^9.1.1"
     tsconfig-paths "^3.9.0"
 
-"@nrwl/jest@12.5.1":
-  version "12.5.1"
-  resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/@nrwl/jest/-/jest-12.5.1.tgz#e701c5c660bdd2cc12e6b3b60b6b081677b1a43b"
-  integrity sha1-5wHFxmC90swS5rO2C2sIFnexpDs=
-  dependencies:
-    "@nrwl/devkit" "12.5.1"
-    jest-resolve "^26.6.2"
-    rxjs "^6.5.4"
-    tslib "^2.0.0"
-
 "@nrwl/jest@12.9.0":
   version "12.9.0"
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/@nrwl/jest/-/jest-12.9.0.tgz#fb20631274c2462b73a0cb88d73ba7897c35e303"
@@ -684,17 +652,6 @@
     rxjs "^6.5.4"
     tslib "^2.0.0"
 
-"@nrwl/linter@12.5.1":
-  version "12.5.1"
-  resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/@nrwl/linter/-/linter-12.5.1.tgz#a318b57b642b5c0b81e21194618cc73b43e1e074"
-  integrity sha1-oxi1e2QrXAuB4hGUYYzHO0Ph4HQ=
-  dependencies:
-    "@nrwl/devkit" "12.5.1"
-    glob "7.1.4"
-    minimatch "3.0.4"
-    tmp "~0.2.1"
-    tslib "^2.0.0"
-
 "@nrwl/linter@12.9.0":
   version "12.9.0"
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/@nrwl/linter/-/linter-12.9.0.tgz#1633045cb64871fb89eaced8c5b66664211237c6"
@@ -707,7 +664,7 @@
     tmp "~0.2.1"
     tslib "^2.0.0"
 
-"@nrwl/node@^12.9.0":
+"@nrwl/node@12.9.0":
   version "12.9.0"
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/@nrwl/node/-/node-12.9.0.tgz#fbc0a878d47f0ddff4cda28cdb34c3fe04a830c7"
   integrity sha1-+8CoeNR/Dd/0zaKM2zTD/gSoMMc=
@@ -734,22 +691,6 @@
     webpack-merge "4.2.1"
     webpack-node-externals "1.7.2"
 
-"@nrwl/tao@12.5.1":
-  version "12.5.1"
-  resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/@nrwl/tao/-/tao-12.5.1.tgz#f402aa035eba78fe56c42753832a574c663e9b53"
-  integrity sha1-9AKqA166eP5WxCdTgypXTGY+m1M=
-  dependencies:
-    chalk "4.1.0"
-    enquirer "~2.3.6"
-    fs-extra "^9.1.0"
-    jsonc-parser "3.0.0"
-    rxjs "^6.5.4"
-    rxjs-for-await "0.0.2"
-    semver "7.3.4"
-    tmp "~0.2.1"
-    tslib "^2.0.0"
-    yargs-parser "20.0.0"
-
 "@nrwl/tao@12.9.0":
   version "12.9.0"
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/@nrwl/tao/-/tao-12.9.0.tgz#f8470ac0dccd5df414afc244fbbf37c23eb75764"
@@ -765,34 +706,6 @@
     semver "7.3.4"
     tmp "~0.2.1"
     tslib "^2.0.0"
-    yargs-parser "20.0.0"
-
-"@nrwl/workspace@12.5.1":
-  version "12.5.1"
-  resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/@nrwl/workspace/-/workspace-12.5.1.tgz#ba1f66b6c02d7697d8a77b2c45988df471a81760"
-  integrity sha1-uh9mtsAtdpfYp3ssRZiN9HGoF2A=
-  dependencies:
-    "@nrwl/cli" "12.5.1"
-    "@nrwl/devkit" "12.5.1"
-    "@nrwl/jest" "12.5.1"
-    "@nrwl/linter" "12.5.1"
-    chalk "4.1.0"
-    chokidar "^3.5.1"
-    cosmiconfig "^4.0.0"
-    dotenv "8.2.0"
-    enquirer "~2.3.6"
-    flat "^5.0.2"
-    fs-extra "^9.1.0"
-    glob "7.1.4"
-    ignore "^5.0.4"
-    minimatch "3.0.4"
-    npm-run-all "^4.1.5"
-    open "^7.4.2"
-    rxjs "^6.5.4"
-    semver "7.3.4"
-    tmp "~0.2.1"
-    tslib "^2.0.0"
-    yargs "15.4.1"
     yargs-parser "20.0.0"
 
 "@nrwl/workspace@12.9.0":
@@ -933,11 +846,6 @@
   version "14.14.33"
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/@types/node/-/node-14.14.33.tgz#9e4f8c64345522e4e8ce77b334a8aaa64e2b6c78"
   integrity sha1-nk+MZDRVIuToznezNKiqpk4rbHg=
-
-"@types/normalize-package-data@^2.4.0":
-  version "2.4.1"
-  resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/@types/normalize-package-data/-/normalize-package-data-2.4.1.tgz#d3357479a0fdfdd5907fe67e17e0a85c906e1301"
-  integrity sha1-0zV0eaD9/dWQf+Z+F+CoXJBuEwE=
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -1880,11 +1788,6 @@ chrome-trace-event@^1.0.2:
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/chrome-trace-event/-/chrome-trace-event-1.0.3.tgz#1015eced4741e15d06664a957dbbf50d041e26ac"
   integrity sha1-EBXs7UdB4V0GZkqVfbv1DQQeJqw=
 
-ci-info@^2.0.0:
-  version "2.0.0"
-  resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/ci-info/-/ci-info-2.0.0.tgz#67a9e964be31a51e15e5010d58e6f12834002f46"
-  integrity sha1-Z6npZL4xpR4V5QENWObxKDQAL0Y=
-
 ci-info@^3.1.1:
   version "3.2.0"
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/ci-info/-/ci-info-3.2.0.tgz#2876cb948a498797b5236f0095bc057d0dca38b6"
@@ -2347,12 +2250,7 @@ domexception@^2.0.1:
   dependencies:
     webidl-conversions "^5.0.0"
 
-dotenv@8.2.0:
-  version "8.2.0"
-  resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
-  integrity sha1-l+YZJZradQ7qPk6j4mvO6lQksWo=
-
-dotenv@~10.0.0:
+dotenv@10.0.0, dotenv@~10.0.0:
   version "10.0.0"
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/dotenv/-/dotenv-10.0.0.tgz#3d4227b8fb95f81096cdd2b66653fb2c7085ba81"
   integrity sha1-PUInuPuV+BCWzdK2ZlP7LHCFuoE=
@@ -3385,13 +3283,6 @@ is-callable@^1.1.4, is-callable@^1.2.4:
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/is-callable/-/is-callable-1.2.4.tgz#47301d58dd0259407865547853df6d61fe471945"
   integrity sha1-RzAdWN0CWUB4ZVR4U99tYf5HGUU=
 
-is-ci@^2.0.0:
-  version "2.0.0"
-  resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/is-ci/-/is-ci-2.0.0.tgz#6bc6334181810e04b5c22b3d589fdca55026404c"
-  integrity sha1-a8YzQYGBDgS1wis9WJ/cpVAmQEw=
-  dependencies:
-    ci-info "^2.0.0"
-
 is-ci@^3.0.0:
   version "3.0.0"
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/is-ci/-/is-ci-3.0.0.tgz#c7e7be3c9d8eef7d0fa144390bd1e4b88dc4c994"
@@ -3964,20 +3855,6 @@ jest-resolve@27.0.6:
     resolve "^1.20.0"
     slash "^3.0.0"
 
-jest-resolve@^26.6.2:
-  version "26.6.2"
-  resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/jest-resolve/-/jest-resolve-26.6.2.tgz#a3ab1517217f469b504f1b56603c5bb541fbb507"
-  integrity sha1-o6sVFyF/RptQTxtWYDxbtUH7tQc=
-  dependencies:
-    "@jest/types" "^26.6.2"
-    chalk "^4.0.0"
-    graceful-fs "^4.2.4"
-    jest-pnp-resolver "^1.2.2"
-    jest-util "^26.6.2"
-    read-pkg-up "^7.0.1"
-    resolve "^1.18.1"
-    slash "^3.0.0"
-
 jest-resolve@^27.0.6, jest-resolve@^27.2.4:
   version "27.2.4"
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/jest-resolve/-/jest-resolve-27.2.4.tgz#d3b999f073ff84a8ae109ce99ff7f3223048701a"
@@ -4104,18 +3981,6 @@ jest-util@27.0.6:
     graceful-fs "^4.2.4"
     is-ci "^3.0.0"
     picomatch "^2.2.3"
-
-jest-util@^26.6.2:
-  version "26.6.2"
-  resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/jest-util/-/jest-util-26.6.2.tgz#907535dbe4d5a6cb4c47ac9b926f6af29576cbc1"
-  integrity sha1-kHU12+TVpstMR6ybkm9q8pV2y8E=
-  dependencies:
-    "@jest/types" "^26.6.2"
-    "@types/node" "*"
-    chalk "^4.0.0"
-    graceful-fs "^4.2.4"
-    is-ci "^2.0.0"
-    micromatch "^4.0.2"
 
 jest-util@^27.0.0, jest-util@^27.0.6, jest-util@^27.2.4:
   version "27.2.4"
@@ -4521,7 +4386,7 @@ micromatch@^3.1.10, micromatch@^3.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.2"
 
-micromatch@^4.0.2, micromatch@^4.0.4:
+micromatch@^4.0.4:
   version "4.0.4"
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/micromatch/-/micromatch-4.0.4.tgz#896d519dfe9db25fce94ceb7a500919bf881ebf9"
   integrity sha1-iW1Rnf6dsl/OlM63pQCRm/iB6/k=
@@ -4751,7 +4616,7 @@ node-releases@^1.1.77:
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/node-releases/-/node-releases-1.1.77.tgz#50b0cfede855dd374e7585bf228ff34e57c1c32e"
   integrity sha1-ULDP7ehV3TdOdYW/Io/zTlfBwy4=
 
-normalize-package-data@^2.3.2, normalize-package-data@^2.5.0:
+normalize-package-data@^2.3.2:
   version "2.5.0"
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/normalize-package-data/-/normalize-package-data-2.5.0.tgz#e66db1838b200c1dfc233225d12cb36520e234a8"
   integrity sha1-5m2xg4sgDB38IzIl0SyzZSDiNKg=
@@ -5280,15 +5145,6 @@ react-is@^17.0.1:
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha1-5pHUqOnHiTZWVVOas3J2Kw77VPA=
 
-read-pkg-up@^7.0.1:
-  version "7.0.1"
-  resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/read-pkg-up/-/read-pkg-up-7.0.1.tgz#f3a6135758459733ae2b95638056e1854e7ef507"
-  integrity sha1-86YTV1hFlzOuK5VjgFbhhU5+9Qc=
-  dependencies:
-    find-up "^4.1.0"
-    read-pkg "^5.2.0"
-    type-fest "^0.8.1"
-
 read-pkg@^3.0.0:
   version "3.0.0"
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/read-pkg/-/read-pkg-3.0.0.tgz#9cbc686978fee65d16c00e2b19c237fcf6e38389"
@@ -5297,16 +5153,6 @@ read-pkg@^3.0.0:
     load-json-file "^4.0.0"
     normalize-package-data "^2.3.2"
     path-type "^3.0.0"
-
-read-pkg@^5.2.0:
-  version "5.2.0"
-  resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/read-pkg/-/read-pkg-5.2.0.tgz#7bf295438ca5a33e56cd30e053b34ee7250c93cc"
-  integrity sha1-e/KVQ4yloz5WzTDgU7NO5yUMk8w=
-  dependencies:
-    "@types/normalize-package-data" "^2.4.0"
-    normalize-package-data "^2.5.0"
-    parse-json "^5.0.0"
-    type-fest "^0.6.0"
 
 "readable-stream@1 || 2", readable-stream@^2.0.0, readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.1.5, readable-stream@^2.2.2, readable-stream@^2.3.3, readable-stream@^2.3.6, readable-stream@~2.3.6:
   version "2.3.7"
@@ -5411,7 +5257,7 @@ resolve-url@^0.2.1:
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
   integrity sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo=
 
-resolve@^1.10.0, resolve@^1.18.1, resolve@^1.20.0:
+resolve@^1.10.0, resolve@^1.20.0:
   version "1.20.0"
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/resolve/-/resolve-1.20.0.tgz#629a013fb3f70755d6f0b7935cc1c2c5378b1975"
   integrity sha1-YpoBP7P3B1XW8LeTXMHCxTeLGXU=
@@ -6243,16 +6089,6 @@ type-fest@^0.21.3:
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/type-fest/-/type-fest-0.21.3.tgz#d260a24b0198436e133fa26a524a6d65fa3b2e37"
   integrity sha1-0mCiSwGYQ24TP6JqUkptZfo7Ljc=
 
-type-fest@^0.6.0:
-  version "0.6.0"
-  resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/type-fest/-/type-fest-0.6.0.tgz#8d2a2370d3df886eb5c90ada1c5bf6188acf838b"
-  integrity sha1-jSojcNPfiG61yQraHFv2GIrPg4s=
-
-type-fest@^0.8.1:
-  version "0.8.1"
-  resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/type-fest/-/type-fest-0.8.1.tgz#09e249ebde851d3b1e48d27c105444667f17b83d"
-  integrity sha1-CeJJ696FHTseSNJ8EFREZn8XuD0=
-
 typedarray-to-buffer@^3.1.5:
   version "3.1.5"
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/typedarray-to-buffer/-/typedarray-to-buffer-3.1.5.tgz#a97ee7a9ff42691b9f783ff1bc5112fe3fca9080"
@@ -6265,10 +6101,10 @@ typedarray@^0.0.6:
   resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@~4.2.4:
-  version "4.2.4"
-  resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/typescript/-/typescript-4.2.4.tgz#8610b59747de028fda898a8aef0e103f156d0961"
-  integrity sha1-hhC1l0feAo/aiYqK7w4QPxVtCWE=
+typescript@4.3.5:
+  version "4.3.5"
+  resolved "https://artifactory.fntgrp.com:443/artifactory/api/npm/npm-fnt-hub/typescript/-/typescript-4.3.5.tgz#4d1c37cc16e893973c45a06886b7113234f119f4"
+  integrity sha1-TRw3zBbok5c8RaBohrcRMjTxGfQ=
 
 unbox-primitive@^1.0.1:
   version "1.0.1"
