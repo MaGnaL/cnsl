@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "projects": {
+    "cnsl": {
+      "root": "packages/cnsl",
+      "sourceRoot": "packages/cnsl/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["packages/cnsl/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/cnsl"],
+          "options": {
+            "jestConfig": "packages/cnsl/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/packages/cnsl",
+            "tsConfig": "packages/cnsl/tsconfig.lib.json",
+            "packageJson": "packages/cnsl/package.json",
+            "main": "packages/cnsl/src/index.ts",
+            "assets": ["packages/cnsl/*.md"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/workspace"
+  }
+}

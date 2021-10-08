@@ -3,14 +3,14 @@ import {Cnsl} from '../cnsl.interface';
 
 export function cnslLogged({
   groupTitle,
-  groupCollapsed
+  groupCollapsed,
 }: {groupTitle?: string; groupCollapsed?: boolean} = {}): MethodDecorator {
-  return function(target: Object, propertyKey: string, descriptor: TypedPropertyDescriptor<any>) {
+  return function (target: Object, propertyKey: string, descriptor: TypedPropertyDescriptor<any>) {
     let originalMethod = descriptor.value; // save a reference to the original method
 
     // NOTE: Do not use arrow syntax here. Use a function expression in
     // order to use the correct value of `this` in this method (see notes below)
-    descriptor.value = function(...args: any[]) {
+    descriptor.value = function (...args: any[]) {
       let grpCnsl: Cnsl = groupTitle ? cnsl.scoped(null).group(groupTitle, groupCollapsed) : cnsl;
       if (groupTitle) {
         grpCnsl.log(
