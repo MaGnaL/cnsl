@@ -1,6 +1,6 @@
 {
   "name": "cnsl",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "peerDependencies": {
     "lodash": "^4.17.21"
   }
