@@ -26,13 +26,11 @@
       }
     ]
   },
-  "projects": {
-    "cnsl": {
-      "tags": []
-    }
-  },
   "workspaceLayout": {
     "appsDir": "packages",
     "libsDir": "packages"
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/workspace"
   }
 }

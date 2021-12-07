@@ -32,10 +32,8 @@
             "assets": ["packages/cnsl/*.md"]
           }
         }
-      }
+      },
+      "tags": []
     }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/workspace"
   }
 }
